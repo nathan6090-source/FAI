@@ -1,0 +1,749 @@
+```html
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>F.A.I. - Clientes</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MENU LATERAL
+===================================================== -->
+
+<aside class="sidebar">
+
+
+    <div class="sidebar-logo">
+
+        <div class="logo">
+            F.A.I. <span>•</span>
+        </div>
+
+        <div class="logo-subtitle">
+            Faturamento Artificial Intelligence
+        </div>
+
+    </div>
+
+
+    <nav class="menu">
+
+
+        <div class="menu-section">
+            PRINCIPAL
+        </div>
+
+
+        <a
+            href="index.html"
+            class="menu-item">
+
+            <span class="menu-icon">
+                ⌂
+            </span>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <div class="menu-section">
+            GESTÃO
+        </div>
+
+
+        <a
+            href="clientes.html"
+            class="menu-item active">
+
+            <span class="menu-icon">
+                ♙
+            </span>
+
+            <span>
+                Clientes
+            </span>
+
+        </a>
+
+
+        <a
+    href="faturamentos.html"
+    class="menu-item">
+
+    <span class="menu-icon">
+        R$
+    </span>
+
+    <span>
+        Faturamentos
+    </span>
+
+</a>
+
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <span class="menu-icon">
+                ▣
+            </span>
+
+            <span>
+                Relatórios
+            </span>
+
+        </a>
+
+
+        <div class="menu-section">
+            INTELIGÊNCIA
+        </div>
+
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <span class="menu-icon">
+                ✦
+            </span>
+
+            <span>
+                Inteligência F.A.I.
+            </span>
+
+        </a>
+
+
+        <div class="menu-section">
+            SISTEMA
+        </div>
+
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <span class="menu-icon">
+                ⚙
+            </span>
+
+            <span>
+                Configurações
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- USUÁRIO -->
+
+    <div class="sidebar-bottom">
+
+
+        <div class="user-box">
+
+            <div class="user-avatar">
+                N
+            </div>
+
+
+            <div class="user-info">
+
+                <strong>
+                    Nathan
+                </strong>
+
+                <span>
+                    Administrador
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout-button"
+            onclick="fazerLogout()">
+
+            <span>
+                ⇥
+            </span>
+
+            <span>
+                Sair
+            </span>
+
+        </button>
+
+
+    </div>
+
+
+</aside>
+
+
+<!-- =====================================================
+     ÁREA PRINCIPAL
+===================================================== -->
+
+<div class="app">
+
+
+    <!-- HEADER -->
+
+    <header>
+
+
+        <div>
+
+            <div class="page-title">
+                Clientes
+            </div>
+
+            <div class="page-subtitle">
+                Gestão e consulta de clientes
+            </div>
+
+        </div>
+
+
+        <div class="status">
+
+            <div class="dot"></div>
+
+            <span id="status">
+                CONECTANDO...
+            </span>
+
+        </div>
+
+
+    </header>
+
+
+    <!-- =================================================
+         CONTEÚDO
+    ================================================== -->
+
+    <main>
+
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Clientes
+                    </h2>
+
+                    <p class="panel-description">
+                        Clientes cadastrados no sistema.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <strong id="total-clientes">
+                        0
+                    </strong>
+
+                    <span>
+                        clientes
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUSCA -->
+
+            <div class="filtros">
+
+
+                <div class="filtro-item">
+
+                    <label for="busca-cliente">
+                        Cliente
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="busca-cliente"
+                        placeholder="Buscar cliente...">
+
+                </div>
+
+
+                <div class="filtro-item">
+
+                    <label for="filtro-ativo">
+                        Status
+                    </label>
+
+
+                    <select id="filtro-ativo">
+
+                        <option value="todos">
+                            Todos
+                        </option>
+
+                        <option value="ativo">
+                            Ativos
+                        </option>
+
+                        <option value="inativo">
+                            Inativos
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    id="btn-limpar-clientes">
+
+                    Limpar filtros
+
+                </button>
+
+
+            </div>
+
+
+            <!-- TABELA -->
+
+            <div class="table-container">
+
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Cliente
+                            </th>
+
+                            <th>
+                                CPF / CNPJ
+                            </th>
+
+                            <th>
+                                E-mail
+                            </th>
+
+                            <th>
+                                Telefone
+                            </th>
+
+                            <th>
+                                Cadastro
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tabela-clientes">
+
+                        <tr>
+
+                            <td colspan="7">
+                                Carregando clientes...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+const token =
+    localStorage.getItem("fai_token");
+
+
+if (!token) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+let listaClientes = [];
+
+
+async function carregarClientes() {
+
+    try {
+
+
+        const resposta =
+            await fetch(
+                "http://127.0.0.1:8000/clientes",
+                {
+                    headers: {
+                        "Authorization":
+                            "Bearer " + token
+                    }
+                }
+            );
+
+
+        if (resposta.status === 401) {
+
+            localStorage.removeItem(
+                "fai_token"
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                "Erro ao consultar clientes"
+            );
+
+        }
+
+
+        const dados =
+            await resposta.json();
+
+
+        listaClientes = dados;
+
+
+        document.getElementById(
+            "total-clientes"
+        ).textContent = dados.length;
+
+
+        renderizarClientes(dados);
+
+
+        document.getElementById(
+            "status"
+        ).textContent = "ONLINE";
+
+
+    }
+    catch (erro) {
+
+        console.error(
+            "Erro:",
+            erro
+        );
+
+
+        document.getElementById(
+            "status"
+        ).textContent = "OFFLINE";
+
+
+        document.getElementById(
+            "tabela-clientes"
+        ).innerHTML =
+            `
+            <tr>
+                <td colspan="7">
+                    Erro ao carregar clientes.
+                </td>
+            </tr>
+            `;
+
+    }
+
+}
+
+
+function renderizarClientes(lista) {
+
+
+    const tabela =
+        document.getElementById(
+            "tabela-clientes"
+        );
+
+
+    tabela.innerHTML = "";
+
+
+    if (lista.length === 0) {
+
+        tabela.innerHTML =
+            `
+            <tr>
+                <td colspan="7">
+                    Nenhum cliente encontrado.
+                </td>
+            </tr>
+            `;
+
+        return;
+
+    }
+
+
+    lista.forEach(
+        function(cliente) {
+
+
+            const linha =
+                document.createElement("tr");
+
+
+            const statusClasse =
+                cliente.ativo
+                    ? "status-pago"
+                    : "status-vencido";
+
+
+            const statusTexto =
+                cliente.ativo
+                    ? "ATIVO"
+                    : "INATIVO";
+
+
+            linha.innerHTML =
+                `
+                <td>
+                    ${cliente.id}
+                </td>
+
+                <td>
+                    ${cliente.nome}
+                </td>
+
+                <td>
+                    ${cliente.cpf_cnpj || "-"}
+                </td>
+
+                <td>
+                    ${cliente.email || "-"}
+                </td>
+
+                <td>
+                    ${cliente.telefone || "-"}
+                </td>
+
+                <td>
+                    ${cliente.data_cadastro}
+                </td>
+
+                <td>
+
+                    <span
+                        class="status-badge ${statusClasse}">
+
+                        ${statusTexto}
+
+                    </span>
+
+                </td>
+                `;
+
+
+            tabela.appendChild(
+                linha
+            );
+
+
+        }
+    );
+
+}
+
+
+function aplicarFiltrosClientes() {
+
+
+    const busca =
+        document.getElementById(
+            "busca-cliente"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const status =
+        document.getElementById(
+            "filtro-ativo"
+        ).value;
+
+
+    const filtrados =
+        listaClientes.filter(
+            function(cliente) {
+
+
+                const nomeOk =
+                    busca === "" ||
+                    cliente.nome
+                        .toLowerCase()
+                        .includes(busca);
+
+
+                const statusOk =
+                    status === "todos" ||
+                    (
+                        status === "ativo" &&
+                        cliente.ativo
+                    ) ||
+                    (
+                        status === "inativo" &&
+                        !cliente.ativo
+                    );
+
+
+                return nomeOk &&
+                       statusOk;
+
+            }
+        );
+
+
+    renderizarClientes(
+        filtrados
+    );
+
+}
+
+
+document.getElementById(
+    "busca-cliente"
+)
+.addEventListener(
+    "input",
+    aplicarFiltrosClientes
+);
+
+
+document.getElementById(
+    "filtro-ativo"
+)
+.addEventListener(
+    "change",
+    aplicarFiltrosClientes
+);
+
+
+document.getElementById(
+    "btn-limpar-clientes"
+)
+.addEventListener(
+    "click",
+    function() {
+
+
+        document.getElementById(
+            "busca-cliente"
+        ).value = "";
+
+
+        document.getElementById(
+            "filtro-ativo"
+        ).value = "todos";
+
+
+        renderizarClientes(
+            listaClientes
+        );
+
+    }
+);
+
+
+function fazerLogout() {
+
+    localStorage.removeItem(
+        "fai_token"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+carregarClientes();
+
+</script>
+
+
+</body>
+
+</html>
+```

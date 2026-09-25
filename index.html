@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>F.A.I. Dashboard</title>
+
+<link
+    rel="stylesheet"
+    href="style.css">
+```
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     MENU LATERAL
+===================================================== -->
+
+<aside class="sidebar">
+
+```
+<div class="sidebar-logo">
+
+    <div class="logo">
+        F.A.I. <span>•</span>
+    </div>
+
+    <div class="logo-subtitle">
+        Faturamento Artificial Intelligence
+    </div>
+
+</div>
+
+
+<nav class="menu">
+
+    <div class="menu-section">
+        PRINCIPAL
+    </div>
+
+
+    <a
+        href="index.html"
+        class="menu-item active">
+
+        <span class="menu-icon">
+            ⌂
+        </span>
+
+        <span>
+            Dashboard
+        </span>
+
+    </a>
+
+
+    <div class="menu-section">
+        GESTÃO
+    </div>
+
+
+    <a
+        href="clientes.html"
+        class="menu-item">
+
+        <span class="menu-icon">
+            ♙
+        </span>
+
+        <span>
+            Clientes
+        </span>
+
+    </a>
+
+
+    <a
+        href="faturamentos.html"
+        class="menu-item">
+
+        <span class="menu-icon">
+            R$
+        </span>
+
+        <span>
+            Faturamentos
+        </span>
+
+    </a>
+
+
+    <a
+        href="#"
+        class="menu-item">
+
+        <span class="menu-icon">
+            ▣
+        </span>
+
+        <span>
+            Relatórios
+        </span>
+
+    </a>
+
+
+    <div class="menu-section">
+        INTELIGÊNCIA
+    </div>
+
+
+    <a
+        href="#"
+        class="menu-item">
+
+        <span class="menu-icon">
+            ✦
+        </span>
+
+        <span>
+            Inteligência F.A.I.
+        </span>
+
+    </a>
+
+
+    <div class="menu-section">
+        SISTEMA
+    </div>
+
+
+    <a
+        href="#"
+        class="menu-item">
+
+        <span class="menu-icon">
+            ⚙
+        </span>
+
+        <span>
+            Configurações
+        </span>
+
+    </a>
+
+</nav>
+
+
+<div class="sidebar-bottom">
+
+    <div class="user-box">
+
+        <div class="user-avatar">
+            N
+        </div>
+
+
+        <div class="user-info">
+
+            <strong>
+                Nathan
+            </strong>
+
+            <span>
+                Administrador
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="logout-button"
+        id="btn-logout"
+        onclick="fazerLogout()">
+
+        <span>
+            ⇥
+        </span>
+
+        <span>
+            Sair
+        </span>
+
+    </button>
+
+</div>
+```
+
+</aside>
+
+<!-- =====================================================
+     APLICAÇÃO
+===================================================== -->
+
+<div class="app">
+
+```
+<!-- =================================================
+     CABEÇALHO
+================================================= -->
+
+<header>
+
+    <div>
+
+        <div class="page-title">
+            Dashboard
+        </div>
+
+        <div class="page-subtitle">
+            Visão geral financeira do F.A.I.
+        </div>
+
+    </div>
+
+
+    <div class="status">
+
+        <div class="dot"></div>
+
+        <span id="status">
+            CONECTANDO...
+        </span>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+    <!-- =============================================
+         CARDS PRINCIPAIS
+    ============================================== -->
+
+    <section class="cards">
+
+
+        <div class="card">
+
+            <div class="label">
+                CLIENTES ATIVOS
+            </div>
+
+            <div
+                class="value blue"
+                id="clientes">
+
+                0
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="label">
+                FATURAMENTO TOTAL
+            </div>
+
+            <div
+                class="value"
+                id="faturamento">
+
+                R$ 0,00
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="label">
+                TOTAL PAGO
+            </div>
+
+            <div
+                class="value green"
+                id="pago">
+
+                R$ 0,00
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="label">
+                TOTAL PENDENTE
+            </div>
+
+            <div
+                class="value yellow"
+                id="pendente">
+
+                R$ 0,00
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="label">
+                TOTAL VENCIDO
+            </div>
+
+            <div
+                class="value red"
+                id="vencido">
+
+                R$ 0,00
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =============================================
+         DISTRIBUIÇÃO FINANCEIRA
+    ============================================== -->
+
+    <section class="panel">
+
+
+        <div class="panel-header">
+
+            <div>
+
+                <h2>
+                    Distribuição financeira
+                </h2>
+
+                <p class="panel-description">
+                    Distribuição atual dos faturamentos por status.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAGO -->
+
+        <div class="finance-row">
+
+            <div class="finance-header">
+
+                <span>
+                    Pago
+                </span>
+
+                <span id="percentual-pago">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    id="barra-pago"
+                    class="progress-bar progress-green"
+                    style="width: 0%;">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PENDENTE -->
+
+        <div class="finance-row">
+
+            <div class="finance-header">
+
+                <span>
+                    Pendente
+                </span>
+
+                <span id="percentual-pendente">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    id="barra-pendente"
+                    class="progress-bar progress-yellow"
+                    style="width: 0%;">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VENCIDO -->
+
+        <div class="finance-row">
+
+            <div class="finance-header">
+
+                <span>
+                    Vencido
+                </span>
+
+                <span id="percentual-vencido">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress">
+
+                <div
+                    id="barra-vencido"
+                    class="progress-bar progress-red"
+                    style="width: 0%;">
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =============================================
+         FATURAMENTOS
+    ============================================== -->
+
+    <section class="panel">
+
+
+        <div class="panel-header">
+
+            <div>
+
+                <h2>
+                    Faturamentos
+                </h2>
+
+                <p class="panel-description">
+                    Últimos registros financeiros.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="filtros">
+
+
+            <div class="filtro-item">
+
+                <label>
+                    Status
+                </label>
+
+                <select id="filtro-status">
+
+                    <option value="todos">
+                        Todos
+                    </option>
+
+                    <option value="pago">
+                        Pago
+                    </option>
+
+                    <option value="pendente">
+                        Pendente
+                    </option>
+
+                    <option value="vencido">
+                        Vencido
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filtro-item">
+
+                <label>
+                    Cliente
+                </label>
+
+                <input
+                    type="text"
+                    id="filtro-cliente"
+                    placeholder="Buscar cliente...">
+
+            </div>
+
+
+            <div class="filtro-item">
+
+                <label>
+                    Vencimento de
+                </label>
+
+                <input
+                    type="date"
+                    id="filtro-data-inicio">
+
+            </div>
+
+
+            <div class="filtro-item">
+
+                <label>
+                    até
+                </label>
+
+                <input
+                    type="date"
+                    id="filtro-data-fim">
+
+            </div>
+
+
+            <button
+                id="btn-limpar-filtros">
+
+                Limpar filtros
+
+            </button>
+
+
+        </div>
+
+
+        <div class="table-container">
+
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Cliente
+                        </th>
+
+                        <th>
+                            Documento
+                        </th>
+
+                        <th>
+                            Descrição
+                        </th>
+
+                        <th>
+                            Valor
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Vencimento
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="tabela-faturamento">
+
+                    <tr>
+
+                        <td colspan="6">
+                            Carregando faturamentos...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =============================================
+         INTELIGÊNCIA F.A.I.
+    ============================================== -->
+
+    <section class="panel">
+
+
+        <div class="panel-header">
+
+            <div>
+
+                <h2>
+                    Pergunte à IA
+                </h2>
+
+                <p class="panel-description">
+                    Consulte a Inteligência F.A.I. sobre os dados financeiros.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="chat-mensagens"
+            class="chat-mensagens">
+
+            <div class="chat-mensagem chat-ia">
+
+                Olá! Sou a Inteligência F.A.I.
+                Como posso ajudar?
+
+            </div>
+
+        </div>
+
+
+        <div class="chat-input-area">
+
+            <input
+                type="text"
+                id="chat-input"
+                placeholder="Digite sua pergunta...">
+
+
+            <button
+                id="chat-enviar">
+
+                Enviar
+
+            </button>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+```
+
+</div>
+
+<!-- =====================================================
+     LOGOUT
+===================================================== -->
+
+<script>
+
+function fazerLogout() {
+
+    localStorage.removeItem(
+        "fai_token"
+    );
+
+    window.location.href =
+        "login.html";
+
+}
+
+</script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>

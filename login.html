@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>F.A.I. - Login</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-box">
+
+        <div class="logo" style="margin-bottom: 30px; text-align: center;">
+            F.A.I. <span>•</span>
+        </div>
+
+        <h2 id="titulo-formulario">Entrar</h2>
+
+        <div class="login-erro" id="login-erro"></div>
+
+        <form id="form-login">
+
+    <div class="login-campo login-campo-extra" id="campo-nome">
+        <label for="login-nome">Nome</label>
+        <input type="text" id="login-nome" autocomplete="name">
+    </div>
+
+    <div class="login-campo">
+        <label for="login-email">E-mail</label>
+        <input type="email" id="login-email" required autocomplete="email">
+    </div>
+
+            <div class="login-campo">
+                <label for="login-senha">Senha</label>
+                <input type="password" id="login-senha" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" id="btn-login">Entrar</button>
+
+        </form>
+
+        <p class="login-alternar">
+            Não tem conta?
+            <a href="#" id="link-alternar">Cadastre-se</a>
+        </p>
+
+    </div>
+
+</div>
+
+<script src="auth.js"></script>
+
+</body>
+
+</html>

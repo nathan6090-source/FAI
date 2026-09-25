@@ -1,0 +1,968 @@
+```html
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>F.A.I. - Faturamentos</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+
+<body>
+
+
+<aside class="sidebar">
+
+
+    <div class="sidebar-logo">
+
+        <div class="logo">
+            F.A.I. <span>•</span>
+        </div>
+
+        <div class="logo-subtitle">
+            Faturamento Artificial Intelligence
+        </div>
+
+    </div>
+
+
+    <nav class="menu">
+
+
+        <div class="menu-section">
+            PRINCIPAL
+        </div>
+
+
+        <a
+            href="index.html"
+            class="menu-item">
+
+            <span class="menu-icon">
+                ⌂
+            </span>
+
+            <span>
+                Dashboard
+            </span>
+
+        </a>
+
+
+        <div class="menu-section">
+            GESTÃO
+        </div>
+
+
+        <a
+            href="clientes.html"
+            class="menu-item">
+
+            <span class="menu-icon">
+                ♙
+            </span>
+
+            <span>
+                Clientes
+            </span>
+
+        </a>
+
+
+        <a
+            href="faturamentos.html"
+            class="menu-item active">
+
+            <span class="menu-icon">
+                R$
+            </span>
+
+            <span>
+                Faturamentos
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <span class="menu-icon">
+                ▣
+            </span>
+
+            <span>
+                Relatórios
+            </span>
+
+        </a>
+
+
+        <div class="menu-section">
+            INTELIGÊNCIA
+        </div>
+
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <span class="menu-icon">
+                ✦
+            </span>
+
+            <span>
+                Inteligência F.A.I.
+            </span>
+
+        </a>
+
+
+        <div class="menu-section">
+            SISTEMA
+        </div>
+
+
+        <a
+            href="#"
+            class="menu-item">
+
+            <span class="menu-icon">
+                ⚙
+            </span>
+
+            <span>
+                Configurações
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+
+        <div class="user-box">
+
+            <div class="user-avatar">
+                N
+            </div>
+
+
+            <div class="user-info">
+
+                <strong>
+                    Nathan
+                </strong>
+
+                <span>
+                    Administrador
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout-button"
+            onclick="fazerLogout()">
+
+            <span>
+                ⇥
+            </span>
+
+            <span>
+                Sair
+            </span>
+
+        </button>
+
+
+    </div>
+
+
+</aside>
+
+
+<div class="app">
+
+
+    <header>
+
+
+        <div>
+
+            <div class="page-title">
+                Faturamentos
+            </div>
+
+            <div class="page-subtitle">
+                Gestão financeira dos faturamentos
+            </div>
+
+        </div>
+
+
+        <div class="status">
+
+            <div class="dot"></div>
+
+            <span id="status">
+                CONECTANDO...
+            </span>
+
+        </div>
+
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =================================================
+             RESUMO
+        ================================================== -->
+
+        <section class="cards">
+
+
+            <div class="card">
+
+                <div class="label">
+                    TOTAL
+                </div>
+
+                <div
+                    class="value blue"
+                    id="total-registros">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="label">
+                    VALOR TOTAL
+                </div>
+
+                <div
+                    class="value"
+                    id="valor-total">
+
+                    R$ 0,00
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="label">
+                    PAGOS
+                </div>
+
+                <div
+                    class="value green"
+                    id="valor-pago">
+
+                    R$ 0,00
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="label">
+                    PENDENTES
+                </div>
+
+                <div
+                    class="value yellow"
+                    id="valor-pendente">
+
+                    R$ 0,00
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="label">
+                    VENCIDOS
+                </div>
+
+                <div
+                    class="value red"
+                    id="valor-vencido">
+
+                    R$ 0,00
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             TABELA
+        ================================================== -->
+
+        <section class="panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Faturamentos
+                    </h2>
+
+                    <p class="panel-description">
+                        Registros financeiros do sistema.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FILTROS -->
+
+            <div class="filtros">
+
+
+                <div class="filtro-item">
+
+                    <label>
+                        Status
+                    </label>
+
+                    <select id="filtro-status">
+
+                        <option value="todos">
+                            Todos
+                        </option>
+
+                        <option value="PAGO">
+                            Pago
+                        </option>
+
+                        <option value="PENDENTE">
+                            Pendente
+                        </option>
+
+                        <option value="VENCIDO">
+                            Vencido
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="filtro-item">
+
+                    <label>
+                        Cliente
+                    </label>
+
+                    <input
+                        type="text"
+                        id="filtro-cliente"
+                        placeholder="Buscar cliente...">
+
+                </div>
+
+
+                <div class="filtro-item">
+
+                    <label>
+                        Vencimento de
+                    </label>
+
+                    <input
+                        type="date"
+                        id="filtro-data-inicio">
+
+                </div>
+
+
+                <div class="filtro-item">
+
+                    <label>
+                        até
+                    </label>
+
+                    <input
+                        type="date"
+                        id="filtro-data-fim">
+
+                </div>
+
+
+                <button
+                    id="btn-limpar-filtros">
+
+                    Limpar filtros
+
+                </button>
+
+
+            </div>
+
+
+            <div class="table-container">
+
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Cliente
+                            </th>
+
+                            <th>
+                                Documento
+                            </th>
+
+                            <th>
+                                Descrição
+                            </th>
+
+                            <th>
+                                Valor
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Faturamento
+                            </th>
+
+                            <th>
+                                Vencimento
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="tabela-faturamentos">
+
+                        <tr>
+
+                            <td colspan="8">
+                                Carregando faturamentos...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<script>
+
+const token =
+    localStorage.getItem("fai_token");
+
+
+if (!token) {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+let listaFaturamentos = [];
+
+
+function formatarMoeda(valor) {
+
+    return valor.toLocaleString(
+        "pt-BR",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    );
+
+}
+
+
+async function carregarFaturamentos() {
+
+    try {
+
+
+        const resposta =
+            await fetch(
+                "http://127.0.0.1:8000/faturamento",
+                {
+                    headers: {
+                        "Authorization":
+                            "Bearer " + token
+                    }
+                }
+            );
+
+
+        if (resposta.status === 401) {
+
+            localStorage.removeItem(
+                "fai_token"
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                "Erro ao consultar faturamentos"
+            );
+
+        }
+
+
+        const dados =
+            await resposta.json();
+
+
+        listaFaturamentos =
+            dados;
+
+
+        atualizarResumo(
+            dados
+        );
+
+
+        renderizarFaturamentos(
+            dados
+        );
+
+
+        document.getElementById(
+            "status"
+        ).textContent = "ONLINE";
+
+
+    }
+    catch (erro) {
+
+        console.error(
+            "Erro:",
+            erro
+        );
+
+
+        document.getElementById(
+            "status"
+        ).textContent = "OFFLINE";
+
+    }
+
+}
+
+
+function atualizarResumo(lista) {
+
+
+    let total = 0;
+
+    let pago = 0;
+
+    let pendente = 0;
+
+    let vencido = 0;
+
+
+    lista.forEach(
+        function(item) {
+
+            total += item.valor;
+
+
+            if (item.status === "PAGO") {
+
+                pago += item.valor;
+
+            }
+
+
+            if (item.status === "PENDENTE") {
+
+                pendente += item.valor;
+
+            }
+
+
+            if (item.status === "VENCIDO") {
+
+                vencido += item.valor;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "total-registros"
+    ).textContent = lista.length;
+
+
+    document.getElementById(
+        "valor-total"
+    ).textContent =
+        "R$ " + formatarMoeda(total);
+
+
+    document.getElementById(
+        "valor-pago"
+    ).textContent =
+        "R$ " + formatarMoeda(pago);
+
+
+    document.getElementById(
+        "valor-pendente"
+    ).textContent =
+        "R$ " + formatarMoeda(pendente);
+
+
+    document.getElementById(
+        "valor-vencido"
+    ).textContent =
+        "R$ " + formatarMoeda(vencido);
+
+}
+
+
+function renderizarFaturamentos(lista) {
+
+
+    const tabela =
+        document.getElementById(
+            "tabela-faturamentos"
+        );
+
+
+    tabela.innerHTML = "";
+
+
+    if (lista.length === 0) {
+
+        tabela.innerHTML =
+            `
+            <tr>
+
+                <td colspan="8">
+                    Nenhum faturamento encontrado.
+                </td>
+
+            </tr>
+            `;
+
+        return;
+
+    }
+
+
+    lista.forEach(
+        function(item) {
+
+
+            const linha =
+                document.createElement("tr");
+
+
+            const status =
+                item.status.toLowerCase();
+
+
+            linha.innerHTML =
+                `
+                <td>
+                    ${item.id}
+                </td>
+
+                <td>
+                    ${item.cliente}
+                </td>
+
+                <td>
+                    ${item.documento}
+                </td>
+
+                <td>
+                    ${item.descricao}
+                </td>
+
+                <td>
+                    R$ ${formatarMoeda(item.valor)}
+                </td>
+
+                <td>
+
+                    <span
+                        class="status-badge status-${status}">
+
+                        ${item.status}
+
+                    </span>
+
+                </td>
+
+                <td>
+                    ${item.data_faturamento}
+                </td>
+
+                <td>
+                    ${item.data_vencimento}
+                </td>
+
+                `;
+
+
+            tabela.appendChild(
+                linha
+            );
+
+
+        }
+    );
+
+}
+
+
+function aplicarFiltros() {
+
+
+    const status =
+        document.getElementById(
+            "filtro-status"
+        ).value;
+
+
+    const cliente =
+        document.getElementById(
+            "filtro-cliente"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const inicio =
+        document.getElementById(
+            "filtro-data-inicio"
+        ).value;
+
+
+    const fim =
+        document.getElementById(
+            "filtro-data-fim"
+        ).value;
+
+
+    const filtrados =
+        listaFaturamentos.filter(
+            function(item) {
+
+
+                const statusOk =
+                    status === "todos" ||
+                    item.status === status;
+
+
+                const clienteOk =
+                    cliente === "" ||
+                    item.cliente
+                        .toLowerCase()
+                        .includes(cliente);
+
+
+                const inicioOk =
+                    inicio === "" ||
+                    item.data_vencimento >= inicio;
+
+
+                const fimOk =
+                    fim === "" ||
+                    item.data_vencimento <= fim;
+
+
+                return (
+                    statusOk &&
+                    clienteOk &&
+                    inicioOk &&
+                    fimOk
+                );
+
+            }
+        );
+
+
+    renderizarFaturamentos(
+        filtrados
+    );
+
+}
+
+
+document.getElementById(
+    "filtro-status"
+)
+.addEventListener(
+    "change",
+    aplicarFiltros
+);
+
+
+document.getElementById(
+    "filtro-cliente"
+)
+.addEventListener(
+    "input",
+    aplicarFiltros
+);
+
+
+document.getElementById(
+    "filtro-data-inicio"
+)
+.addEventListener(
+    "change",
+    aplicarFiltros
+);
+
+
+document.getElementById(
+    "filtro-data-fim"
+)
+.addEventListener(
+    "change",
+    aplicarFiltros
+);
+
+
+document.getElementById(
+    "btn-limpar-filtros"
+)
+.addEventListener(
+    "click",
+    function() {
+
+
+        document.getElementById(
+            "filtro-status"
+        ).value = "todos";
+
+
+        document.getElementById(
+            "filtro-cliente"
+        ).value = "";
+
+
+        document.getElementById(
+            "filtro-data-inicio"
+        ).value = "";
+
+
+        document.getElementById(
+            "filtro-data-fim"
+        ).value = "";
+
+
+        renderizarFaturamentos(
+            listaFaturamentos
+        );
+
+    }
+);
+
+
+function fazerLogout() {
+
+    localStorage.removeItem(
+        "fai_token"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+carregarFaturamentos();
+
+</script>
+
+
+</body>
+
+</html>
+```
